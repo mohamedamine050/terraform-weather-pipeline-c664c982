@@ -162,6 +162,9 @@ resource "aws_lambda_function" "fetch" {
   role             = aws_iam_role.lambda_role.arn
   layers           = [aws_lambda_layer_version.common.arn]
   depends_on       = [aws_s3_object.lambda_fetch_zip, aws_lambda_layer_version.common]
+  timeout     = 30
+  memory_size = 256
+
 }
 
 # --------------------------------------------------------------------
@@ -211,6 +214,8 @@ resource "aws_lambda_function" "process" {
   role             = aws_iam_role.lambda_role.arn
   layers           = [aws_lambda_layer_version.common.arn]
   depends_on       = [aws_s3_object.lambda_process_zip, aws_lambda_layer_version.common]
+  timeout     = 30
+  memory_size = 256
 }
 
 # --------------------------------------------------------------------
